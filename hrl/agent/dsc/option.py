@@ -9,7 +9,7 @@ from pfrl.wrappers import atari_wrappers
 from . import utils
 from hrl.agent.rainbow.rainbow import Rainbow
 from .classifier.position_classifier import PositionInitiationClassifier
-from .classifier.image_classifier import ImageInitiationClassifier
+from .classifier.sift_classifier import SiftInitiationClassifier
 from hrl.salient_event.salient_event import SalientEvent
 from .datastructures import TrainingExample
 
@@ -52,6 +52,9 @@ class ModelFreeOption(object):
         self.num_executions = 0
         self.gestation_period = gestation_period
 
+        self.num_kmeans_clusters = num_kmeans_clusters
+        self.num_sift_keypoints = num_sift_keypoints
+
         self.initiation_classifier = self._get_initiation_classifier()
         self.solver = self._get_model_free_solver()
 
@@ -84,7 +87,10 @@ class ModelFreeOption(object):
     def _get_initiation_classifier(self):
         if self.use_pos_for_init:
             return PositionInitiationClassifier()
-        return ImageInitiationClassifier(gamma=self.gamma)
+        return SiftInitiationClassifier(
+            num_clusters=self.num_kmeans_clusters,
+            num_sift_keypoints=self.num_sift_keypoints,
+        )
 
     # ------------------------------------------------------------
     # Learning Phase Methods
