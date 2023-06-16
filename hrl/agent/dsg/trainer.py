@@ -854,7 +854,7 @@ class DSGTrainer:
 
         def is_close_to_another_event(info):
             distances = [event.distance(info) for event in self.salient_events]
-            return any([distance < 11. for distance in distances])
+            return any([distance < 5. for distance in distances])
 
         def get_options_for_filtering():
             # Only considering root options because their classifiers tend to be tighter
