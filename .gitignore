@@ -1,6 +1,6 @@
 # results
 logs/
-plots
+# plots
 ccv_logs/
 *.out
 *.err
