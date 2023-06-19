@@ -141,9 +141,9 @@ class DSGTrainer:
             t0 = time.time()
             with open(self.dsc_agent.log_file, "wb+") as f:
                 pickle.dump(self.dsg_agent.gc_successes, f)
-            print(f"[Episode={episode} Seed={self.dsc_agent.seed}] Took {time.time() - t0}s to save gc logs")
+	    	print(f"[Episode={episode} Seed={self.dsc_agent.seed}] Took {time.time() - t0}s to save gc logs")
 
-            if iteration > 0 and iteration % 5 == 0:
+            if iteration > 0 and iteration % 1 == 0:
                 # visualize_graph_nodes_with_expansion_probabilities(self.dsg_agent,
                 #                                            episode,
                 #                                            self.dsc_agent.experiment_name,

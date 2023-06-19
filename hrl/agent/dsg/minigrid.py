@@ -193,7 +193,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-FourRooms-v0',
+  level_name='MiniGrid-Empty-8x8-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,
