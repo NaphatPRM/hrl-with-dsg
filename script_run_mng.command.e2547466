@@ -28,3 +28,5 @@ non-resource variables are not supported in the long term
 /home/npermpre/miniconda3/envs/dsg-mng/lib/python3.9/site-packages/tensorflow/python/keras/legacy_tf_layers/core.py:336: UserWarning: `tf.layers.flatten` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Flatten` instead.
   warnings.warn('`tf.layers.flatten` is deprecated and '
 WARNING:absl:use_staging=True is no longer supported
+/home/npermpre/miniconda3/envs/dsg-mng/lib/python3.9/site-packages/numpy/core/_methods.py:163: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  arr = asanyarray(a)
