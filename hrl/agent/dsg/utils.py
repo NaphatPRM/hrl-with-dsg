@@ -197,17 +197,17 @@ def visualize_all_events(dsg_trainer, episode, experiment_name, seed):
 	state = dsg_trainer.init_salient_event.target_obs
 	info = dsg_trainer.init_salient_event.target_info
 	connected_events = dsg_trainer._get_connected_events(state, info)
-	unconnected_events = dsg_trainer._get_unconnected_events(state, info); print("Enter Visualization"); print(connected_events); print(unconnected_events); print("End Printing UTILS")
+	unconnected_events = dsg_trainer._get_unconnected_events(state, info); print("Enter Visualization"); print(connected_events); print(unconnected_events)
 
 	connected_points = [_get_event_representative_point(e) for e in connected_events]
-	connected_x_coords = [point[0][0] for point in connected_points]
+	connected_x_coords = [point[0][0] for point in connected_points]; print("PLOTS"); print(connected_x_coords)
 	connected_y_coords = [point[0][1] for point in connected_points]
-	connected_room_numbers = [point[1] for point in connected_points]
+	connected_room_numbers = [point[1] for point in connected_points]; print(connected_room_numbers)
 
 	unconnected_points = [_get_event_representative_point(e) for e in unconnected_events]
-	unconnected_x_coords = [point[0][0] for point in unconnected_points]
+	unconnected_x_coords = [point[0][0] for point in unconnected_points]; print("PLOTS2"); print(unconnected_x_coords)
 	unconnected_y_coords = [point[0][1] for point in unconnected_points]
-	unconnected_room_numbers = [point[1] for point in unconnected_points]
+	unconnected_room_numbers = [point[1] for point in unconnected_points]; print(unconnected_room_numbers); print("END UTILS")
 
 	plt.figure(figsize=(16, 10))
 
@@ -216,15 +216,15 @@ def visualize_all_events(dsg_trainer, episode, experiment_name, seed):
 	plt.subplot(1, 2, 1)
 	plt.scatter(connected_x_coords, connected_y_coords, c=connected_room_numbers, s=100, cmap=cmap)
 	plt.colorbar()
-	plt.xlim((0, 150))
-	plt.ylim((140, 250))
+	plt.xlim((0, 40))
+	plt.ylim((0, 40))
 	plt.title("Connected Events")
 
 	plt.subplot(1, 2, 2)
 	plt.scatter(unconnected_x_coords, unconnected_y_coords, c=unconnected_room_numbers, s=100, cmap=cmap)
 	plt.colorbar()
-	plt.xlim((0, 150))
-	plt.ylim((140, 250))
+	plt.xlim((0, 40))
+	plt.ylim((0, 40))
 	plt.title("Unconnected Events")
 
 	plt.suptitle(f"T: {dsg_trainer.env.T}")

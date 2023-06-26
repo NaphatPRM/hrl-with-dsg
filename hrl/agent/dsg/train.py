@@ -259,5 +259,5 @@ if __name__ == "__main__":
             )
 
     # Full run loop that alternates between expansion and consolidation
-    trainer.run_loop(current_episode + 1, int(100))    
+    trainer.run_loop(current_episode + 1, int(1e4))    
     print(f"Finished after {(time.time() - t0) / 3600.} hrs")
