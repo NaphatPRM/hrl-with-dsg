@@ -22,32 +22,32 @@ from hrl.montezuma.dopamine_env import AtariPreprocessing
 
 
 def load_goal_state(dir_path, file):
-    file_name = os.path.join(dir_path, file)
-    with open(file_name, "rb") as f:
-        goals = pickle.load(f)
-    if isinstance(goals, (list, tuple)):
-        goal = random.choice(goals)
-    else:
-        goal = goals
-    if hasattr(goal, "frame"):
-        return goal.frame
-    if isinstance(goal, atari_wrappers.LazyFrames):
-        return goal
-    return goal.obs
+	file_name = os.path.join(dir_path, file)
+	with open(file_name, "rb") as f:
+		goals = pickle.load(f)
+	if isinstance(goals, (list, tuple)):
+		goal = random.choice(goals)
+	else:
+		goal = goals
+	if hasattr(goal, "frame"):
+		return goal.frame
+	if isinstance(goal, atari_wrappers.LazyFrames):
+		return goal
+	return goal.obs
 
 
 def get_exploration_agent(rnd_base_dir):
-    """ Return the exploration runner from BBE. """ 
-    from dopamine.discrete_domains import run_experiment
-    from hrl.agent.bonus_based_exploration.run_experiment import create_exploration_runner as create_runner
-    from hrl.agent.bonus_based_exploration.run_experiment import create_exploration_agent as create_agent
+	""" Return the exploration runner from BBE. """ 
+	from dopamine.discrete_domains import run_experiment
+	from hrl.agent.bonus_based_exploration.run_experiment import create_exploration_runner as create_runner
+	from hrl.agent.bonus_based_exploration.run_experiment import create_exploration_agent as create_agent
 
-    _gin_files = [
-        os.path.expanduser("~/hrl-with-dsg/hrl/agent/bonus_based_exploration/configs/rainbow_rnd.gin")
-    ]
+	_gin_files = [
+		os.path.expanduser("~/hrl-with-dsg/hrl/agent/bonus_based_exploration/configs/rainbow_rnd.gin")
+	]
 
-    run_experiment.load_gin_configs(_gin_files, [])
-    return create_runner(rnd_base_dir, create_agent, schedule="episode_wise")
+	run_experiment.load_gin_configs(_gin_files, [])
+	return create_runner(rnd_base_dir, create_agent, schedule="episode_wise")
 
 
 if __name__ == "__main__":
@@ -261,3 +261,4 @@ if __name__ == "__main__":
     # Full run loop that alternates between expansion and consolidation
     trainer.run_loop(current_episode + 1, int(1e4))    
     print(f"Finished after {(time.time() - t0) / 3600.} hrs")
+
