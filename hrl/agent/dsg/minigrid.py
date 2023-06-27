@@ -202,14 +202,14 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-	level_name='MiniGrid-Empty-8x8-v0',
-	reward_fn='sparse',
-	grayscale=True,
-	add_count_based_bonus=True,
-	exploration_reward_scale=0,
-	seed=42,
-	random_reset=False,
-	max_steps=None,
+  level_name='MiniGrid-LavaGapS6-v0',
+  reward_fn='sparse',
+  grayscale=True,
+  add_count_based_bonus=True,
+  exploration_reward_scale=0,
+  seed=42,
+  random_reset=False,
+  max_steps=None,
 ):
 	if max_steps is not None and max_steps > 0:
 		env = gym.make(level_name, max_steps=max_steps)  #, goal_pos=(11, 11))
