@@ -49,7 +49,7 @@ class MinigridInfoWrapper(Wrapper):
 		info['room_number'] = 1
 		info['jumping'] = 0
 		info["dead"] = determine_is_lava(self)
-		info["falling"] = determine_is_lava(self)
+		info["falling"] = False
 		info["uncontrollable"] = False
 		info['truncated'] = truncated
 		info['terminated'] = terminated
@@ -184,15 +184,15 @@ def determine_is_door_open(env):
 	from minigrid.core.world_object import Door
 	for i in range(env.grid.width):
 		for j in range(env.grid.height):
-			tile = env.grid.get(self.env.agent_pos[0], self.env.agent_pos[1])
+			tile = env.grid.get(i, j)
 			if isinstance(tile, Door):
 				return tile.is_open
 	return False
 
-def determine_is_lava(env, info):
+def determine_is_lava(env):
 	"""Convinence hacky function to determine the lava location."""
 	from minigrid.core.world_object import Lava
-	tile = env.grid.get(i, j)
+	tile = env.grid.get(env.agent_pos[0], env.agent_pos[1])
 	if isinstance(tile, Lava):
 		return True
 	return False
