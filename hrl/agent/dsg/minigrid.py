@@ -49,7 +49,7 @@ class MinigridInfoWrapper(Wrapper):
 		info['room_number'] = 1
 		info['jumping'] = 0
 		info["dead"] = determine_is_lava(self)
-		info["falling"] = False
+		info["falling"] = determine_is_lava(self)
 		info["uncontrollable"] = False
 		info['truncated'] = truncated
 		info['terminated'] = terminated
