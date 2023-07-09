@@ -60,7 +60,7 @@ class MinigridInfoWrapper(Wrapper):
 		info['has_key'] = self.env.unwrapped.carrying is not None
 		if info['has_key']:
 			assert self.unwrapped.carrying.type == 'key', self.env.unwrapped.carrying
-			info["inventory"] = self.env.carrying
+			info["inventory"] = self.env.unwrapped.carrying
 		info['door_open'] = determine_is_door_open(self)
 		info["left_door_open"] = determine_is_door_open(self)
 		info["right_door_open"] = determine_is_door_open(self)
@@ -202,7 +202,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-LavaGapS6-v0',
+  level_name='MiniGrid-DoorKey-6x6-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,
