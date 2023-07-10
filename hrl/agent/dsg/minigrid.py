@@ -60,7 +60,7 @@ class MinigridInfoWrapper(Wrapper):
 		info['has_key'] = self.env.unwrapped.carrying is not None
 		if info['has_key']:
 			assert self.unwrapped.carrying.type == 'key', self.env.unwrapped.carrying
-			info["inventory"] = self.env.unwrapped.carrying
+			info["inventory"] = "00010000"
 		info['door_open'] = determine_is_door_open(self)
 		info["left_door_open"] = determine_is_door_open(self)
 		info["right_door_open"] = determine_is_door_open(self)
