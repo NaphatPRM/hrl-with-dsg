@@ -1,0 +1,225 @@
+Mon Jul 10 14:10:22 2023       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 470.182.03   Driver Version: 470.182.03   CUDA Version: 11.4     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ...  On   | 00000000:1A:00.0 Off |                  N/A |
+| 17%   21C    P8     8W / 250W |      0MiB / 11178MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   1  NVIDIA GeForce ...  On   | 00000000:1B:00.0 Off |                  N/A |
+| 24%   39C    P8     9W / 250W |      0MiB / 11178MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   2  NVIDIA GeForce ...  On   | 00000000:3D:00.0 Off |                  N/A |
+| 16%   20C    P8     8W / 250W |      0MiB / 11178MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   3  NVIDIA GeForce ...  On   | 00000000:3E:00.0 Off |                  N/A |
+| 16%   21C    P8     8W / 250W |      0MiB / 11178MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   4  NVIDIA GeForce ...  On   | 00000000:88:00.0 Off |                  N/A |
+| 21%   40C    P2    75W / 250W |   9777MiB / 11178MiB |     18%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   5  NVIDIA GeForce ...  On   | 00000000:89:00.0 Off |                  N/A |
+| 21%   41C    P2    61W / 250W |   8887MiB / 11178MiB |      6%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   6  NVIDIA GeForce ...  On   | 00000000:B1:00.0 Off |                  N/A |
+| 22%   44C    P2    84W / 250W |   9447MiB / 11178MiB |     14%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   7  NVIDIA GeForce ...  On   | 00000000:B2:00.0 Off |                  N/A |
+| 16%   22C    P8     8W / 250W |      0MiB / 11178MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    4   N/A  N/A    697444      C   python3                          9775MiB |
+|    5   N/A  N/A    819903      C   python3                          8885MiB |
+|    6   N/A  N/A    703857      C   python3                          9445MiB |
++-----------------------------------------------------------------------------+
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/logs 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/logs/MiniGrid-DoorKey-6x6-v0_InventoryNum 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/logs/MiniGrid-DoorKey-6x6-v0_InventoryNum/18 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots/MiniGrid-DoorKey-6x6-v0_InventoryNum 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots/MiniGrid-DoorKey-6x6-v0_InventoryNum/18 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots/MiniGrid-DoorKey-6x6-v0_InventoryNum/18/initiation_set_plots 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots/MiniGrid-DoorKey-6x6-v0_InventoryNum/18/value_function_plots 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots/MiniGrid-DoorKey-6x6-v0_InventoryNum/18/accepted_events 
+Successfully created the directory /ifs/CS/replicated/home/npermpre/hrl-with-dsg/plots/MiniGrid-DoorKey-6x6-v0_InventoryNum/18/rejected_events 
+Creating classifier of type cnn
+Creating rainbow with sigma=0.5
+Created model-free option global-option with option_idx=0
+[DSGTrainer] Adding new SalientEvent  SE([1 3])
+[Seed=18] Device count: 1 Device Name: NVIDIA GeForce GTX 1080 Ti
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 0 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: 42.11647340282798
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 1 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -27.616195437207352
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 2 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -48.983388862456195
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 3 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -38.542432433809154
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 4 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -66.89276971074287
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 5 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -69.78796390804928
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 6 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -53.68731708798441
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 7 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -75.50888568547089
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 8 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -82.44916897965595
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 9 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -74.74539830599679
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 10 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -46.362442580080824
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 11 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 1.0	IntrinsicReward: -68.51571431614866
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 12 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -82.81274464941816
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 13 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -58.58112356578931
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 14 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -80.1986658330643
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 15 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -80.13012417365098
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 16 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -84.78295716253342
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 17 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -65.21244769147233
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 18 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -101.56608774093911
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 19 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -98.53285704070004
+Accepted New Salient Event:  SE([4 4])
+[DSGTrainer] Adding new SalientEvent  SE([4 4])
+Accepted New Salient Event:  SE([4 2])
+[DSGTrainer] Adding new SalientEvent  SE([4 2])
+Took 14.939814329147339s to update distance table with 20040 states and events {SE([1 3]), SE([4 4]), SE([4 2]), None}
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 20 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -102.82816233311314
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 21 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -66.22471588803455
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 22 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -79.41146256565025
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 23 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -98.49025395239005
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 24 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
+[RND Rollout] Reward: 0.0	IntrinsicReward: -56.338343674473435
+<hrl.agent.dsg.dsg.SkillGraphAgent object at 0x14a7f024a610>
+================================================================================
+[Expansion] Episode: 25 Step: 0
+================================================================================
+Attempting to expand SE([1 3])
