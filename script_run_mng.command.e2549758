@@ -28,6 +28,7 @@ non-resource variables are not supported in the long term
 /home/npermpre/miniconda3/envs/dsg-mng/lib/python3.9/site-packages/tensorflow/python/keras/legacy_tf_layers/core.py:336: UserWarning: `tf.layers.flatten` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Flatten` instead.
   warnings.warn('`tf.layers.flatten` is deprecated and '
 WARNING:absl:use_staging=True is no longer supported
+<<<<<<< HEAD
 /home/npermpre/miniconda3/envs/dsg-mng/lib/python3.9/site-packages/numpy/core/_methods.py:163: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
   arr = asanyarray(a)
 /home/npermpre/miniconda3/envs/dsg-mng/lib/python3.9/site-packages/numpy/core/fromnumeric.py:3440: RuntimeWarning: Mean of empty slice.
@@ -64,3 +65,5 @@ Traceback (most recent call last):
   File "/ifs/CS/replicated/home/npermpre/hrl-with-dsg/hrl/agent/dsc/classifier/conv_init_classifier.py", line 65, in pessimistic_predict
     assert isinstance(state, np.ndarray)
 AssertionError
+=======
+>>>>>>> 4c04f16eea01add4d80f5c1c84da6b8e5262529d
