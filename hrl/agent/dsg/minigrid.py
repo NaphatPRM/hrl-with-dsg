@@ -39,7 +39,7 @@ class MinigridInfoWrapper(Wrapper):
 		self.T += 1
 		self.step_count += 1
 		info = self._modify_info_dict(info, terminated, truncated)
-		done = terminated or truncated
+		done = terminated or truncated or info["terminated"]
 		return obs, reward, done, info
 
 	def _modify_info_dict(self, info, terminated=False, truncated=False):
@@ -61,6 +61,8 @@ class MinigridInfoWrapper(Wrapper):
 		if info['has_key']:
 			#assert self.unwrapped.carrying.type == 'key', self.env.unwrapped.carrying
 			info["inventory"] = self.env.unwrapped.carrying
+			if self.check_status():
+				info["terminated"] = True
 		info['door_open'] = determine_is_door_open(self)
 		info["left_door_open"] = determine_is_door_open(self)
 		info["right_door_open"] = determine_is_door_open(self)
@@ -68,6 +70,12 @@ class MinigridInfoWrapper(Wrapper):
 
 	def get_current_info(self, info, update_lives=False): return self._modify_info_dict(info)
 	def get_current_position(self): return self.env.agent_pos[0], self.env.agent_pos[1]
+	def check_status(self): 
+		p1 = "go to" in self.env.mission
+		list_mission = self.env.mission.split()
+		p2 = self.env.unwrapped.carrying.type == list_mission[4]
+		p3 = self.env.unwrapped.carrying.color == list_mission[3]
+		return p1 and p2 and p3
 
 
 class ResizeObsWrapper(ObservationWrapper):
