@@ -43,7 +43,7 @@ class MinigridInfoWrapper(Wrapper):
 		return obs, reward, done, info
 
 	def _modify_info_dict(self, info, terminated=False, truncated=False):
-		info['player_pos'] = tuple(self.env.agent_pos)
+		print(self.env.mission); info['player_pos'] = tuple(self.env.agent_pos)
 		info['player_x'] = self.env.agent_pos[0]
 		info['player_y'] = self.env.agent_pos[1]
 		info['room_number'] = 1
@@ -59,8 +59,8 @@ class MinigridInfoWrapper(Wrapper):
 		info['timestep'] = self._timestep # total number of timesteps in env
 		info['has_key'] = self.env.unwrapped.carrying is not None
 		if info['has_key']:
-			assert self.unwrapped.carrying.type == 'key', self.env.unwrapped.carrying
-			info["inventory"] = "00010000"
+			#assert self.unwrapped.carrying.type == 'key', self.env.unwrapped.carrying
+			info["inventory"] = self.env.unwrapped.carrying
 		info['door_open'] = determine_is_door_open(self)
 		info["left_door_open"] = determine_is_door_open(self)
 		info["right_door_open"] = determine_is_door_open(self)
@@ -202,7 +202,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-DoorKey-6x6-v0',
+  level_name='MiniGrid-GoToObject-6x6-N2-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,
