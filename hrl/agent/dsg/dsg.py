@@ -124,8 +124,7 @@ class SkillGraphAgent:
         done = False
         reset = False
         
-        print(self.planner.does_path_exist(state, info, goal_vertex))
-        print(self.is_state_inside_vertex(state, info, goal_vertex))
+	print(f'Does Path Exist : {self.planner.does_path_exist(state, info, goal_vertex)}')
         planner_condition = lambda s, i, g: self.planner.does_path_exist(s, i, g) and \
                                             not self.is_state_inside_vertex(s, i, g)
 
@@ -206,7 +205,7 @@ class SkillGraphAgent:
                                                                                  interrupt_handle=dsc_interrupt_handle)
 
         for new_option in new_options:
-            self.add_newly_created_option_to_plan_graph(new_option)
+		print(f'New Option : {new_option}'); self.add_newly_created_option_to_plan_graph(new_option)
 
         visited_infos = list(itertools.chain.from_iterable([exp["trajectory"] for exp in traj]))
 
