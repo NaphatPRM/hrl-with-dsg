@@ -113,7 +113,7 @@ class RobustDSC(object):
         learned_options = []
 
         while not done and not reset and not reached and not interrupt_handle(state, info):
-            selected_option = self.act(state, info, goal_salient_event.target_info)
+		print(f'Target Info : {goal_salient_event.target_info}'); selected_option = self.act(state, info, goal_salient_event.target_info)
             next_state, done, reset, _, goal_pos, info, transitions = selected_option.rollout(
                                                                                 state,
                                                                                 info,
