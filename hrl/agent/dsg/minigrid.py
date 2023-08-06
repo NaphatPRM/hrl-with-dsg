@@ -43,7 +43,7 @@ class MinigridInfoWrapper(Wrapper):
 		return obs, reward, done, info
 
 	def _modify_info_dict(self, info, terminated=False, truncated=False):
-		print(self.env.mission); info['player_pos'] = tuple(self.env.agent_pos)
+		info['player_pos'] = tuple(self.env.agent_pos)
 		info['player_x'] = self.env.agent_pos[0]
 		info['player_y'] = self.env.agent_pos[1]
 		info['room_number'] = 1

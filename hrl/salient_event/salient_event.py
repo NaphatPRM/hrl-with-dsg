@@ -75,3 +75,4 @@ class SalientEvent:
             y_dist = abs(pos[1] - self.target_info["player_y"])
             return np.sqrt(x_dist**2 + y_dist**2)
         return np.inf
+
