@@ -43,7 +43,7 @@ class PlanGraph:
         assert self._is_observation_type(state), f"{type(state)}"
         assert self._is_option_or_event_type(node), f"{type(node)}"
         
-        start_nodes = self._get_available_options(state, info)
+	start_nodes = self._get_available_options(state, info); if len(start_nodes) > 0: print(f'Start Node : {start_nodes}');
         does_exists = [self.does_path_exist_between_nodes(start, node) for start in start_nodes]
 
         return any(does_exists)
