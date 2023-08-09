@@ -126,7 +126,7 @@ class DSGTrainer:
 				self.graph_expansion_run_loop(episode, self.expansion_duration)
 				episode += self.expansion_duration
 			elif len(self.salient_events) > 0:
-				print(self.salient_events); self.graph_consolidation_run_loop(episode, duration=consolidation_duration)
+				print(f'Print Salient Event : {self.salient_events}'); self.graph_consolidation_run_loop(episode, duration=consolidation_duration)
 				episode += consolidation_duration
 			else:
 				ipdb.set_trace()

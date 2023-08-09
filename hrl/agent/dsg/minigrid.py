@@ -39,7 +39,7 @@ class MinigridInfoWrapper(Wrapper):
 		self.T += 1
 		self.step_count += 1
 		info = self._modify_info_dict(info, terminated, truncated)
-		done = terminated or truncated or info["terminated"]
+		done = truncated or info["terminated"]
 		return obs, reward, done, info
 
 	def _modify_info_dict(self, info, terminated=False, truncated=False):
@@ -60,9 +60,7 @@ class MinigridInfoWrapper(Wrapper):
 		info['has_key'] = self.env.unwrapped.carrying is not None
 		if info['has_key']:
 			#assert self.unwrapped.carrying.type == 'key', self.env.unwrapped.carrying
-			info["inventory"] = self.env.unwrapped.carrying
-			if self.check_status():
-				info["terminated"] = True
+			info["inventory"] = self.env.unwrapped.carrying; info["terminated"] = info["terminated"] and self.check_status()
 		info['door_open'] = determine_is_door_open(self)
 		info["left_door_open"] = determine_is_door_open(self)
 		info["right_door_open"] = determine_is_door_open(self)
