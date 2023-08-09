@@ -205,7 +205,6 @@ class SkillGraphAgent:
 																				 interrupt_handle=dsc_interrupt_handle)
 
 		for new_option in new_options:
-			print(f'New Option : {new_option}')
 			self.add_newly_created_option_to_plan_graph(new_option)
 
 		visited_infos = list(itertools.chain.from_iterable([exp["trajectory"] for exp in traj]))
