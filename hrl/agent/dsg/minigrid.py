@@ -208,7 +208,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-GoToObject-6x6-N2-v0',
+  level_name='MiniGrid-DoorKey-6x6-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,
