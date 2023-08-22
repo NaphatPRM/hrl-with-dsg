@@ -103,8 +103,8 @@ def create_exploration_agent(sess, environment, agent_name=None,
 
 
 @gin.configurable
-def create_exploration_runner(base_dir, create_agent_fn,level_name='MiniGrid-DoorKey-6x6-v0',
-                              remain=False ,schedule='continuous_train_and_eval'):
+def create_exploration_runner(base_dir, create_agent_fn,
+                              schedule='continuous_train_and_eval'):
   """Creates an experiment Runner.
 
   Args:
@@ -119,16 +119,14 @@ def create_exploration_runner(base_dir, create_agent_fn,level_name='MiniGrid-Doo
   Raises:
     ValueError: When an unknown schedule is encountered.
   """
-  assert base_dir is not None; function_build = environment_builder
-  if remain:
-	  def new_env_builder(level_name=level_name): return environment_builder(level_name=level_name)
-	  function_build = new_env_builder # Continuously runs training and eval till max num_iterations is hit.
+  assert base_dir is not None
+  # Continuously runs training and eval till max num_iterations is hit.
   if schedule == 'continuous_train_and_eval':
-    return run_experiment.Runner(base_dir, create_agent_fn, create_environment_fn=function_build)
+    return run_experiment.Runner(base_dir, create_agent_fn, create_environment_fn=environment_builder)
   # Continuously runs training till maximum num_iterations is hit.
   elif schedule == 'continuous_train':
-    return run_experiment.TrainRunner(base_dir, create_agent_fnb, create_environment_fn=function_build)
+    return run_experiment.TrainRunner(base_dir, create_agent_fnb, create_environment_fn=environment_builder)
   elif schedule == 'episode_wise':
-    return RNDAgent(base_dir, create_agent_fn, create_environment_fn=function_build, env_wrapper=MinigridInfoWrapper)
+    return RNDAgent(base_dir, create_agent_fn, create_environment_fn=environment_builder, env_wrapper=MinigridInfoWrapper)
   else:
     raise ValueError('Unknown schedule: {}'.format(schedule))

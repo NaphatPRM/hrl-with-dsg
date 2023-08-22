@@ -200,8 +200,8 @@ def visualize_all_events(dsg_trainer, episode, experiment_name, seed):
 	unconnected_events = dsg_trainer._get_unconnected_events(state, info)
 
 	print("Enter Visualization")
-	print(list(map(lambda x: x.target_info, connected_events))); print(connected_events);
-	print(list(map(lambda x: x.target_info, unconnected_events))); print(unconnected_events);
+	print(list(map(lambda x: x.target_info, connected_events)))
+	print(list(map(lambda x: x.target_info, unconnected_events)))
 
 	connected_points = [_get_event_representative_point(e) for e in connected_events]
 	connected_x_coords = [point[0][0] for point in connected_points]

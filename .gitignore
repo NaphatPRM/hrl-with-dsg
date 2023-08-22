@@ -1,7 +1,6 @@
 # results
 logs/
 # plots
-script_run_mng.command.o2550579
 ccv_logs/
 *.out
 *.err
