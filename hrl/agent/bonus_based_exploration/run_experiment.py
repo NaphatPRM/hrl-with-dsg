@@ -103,7 +103,7 @@ def create_exploration_agent(sess, environment, agent_name=None,
 
 
 @gin.configurable
-def create_exploration_runner(base_dir, create_agent_fn,
+def create_exploration_runner(base_dir, create_agent_fn, level_name='MiniGrid-DoorKey-6x6-v0',
                               schedule='continuous_train_and_eval'):
   """Creates an experiment Runner.
 
@@ -122,10 +122,10 @@ def create_exploration_runner(base_dir, create_agent_fn,
   assert base_dir is not None
   # Continuously runs training and eval till max num_iterations is hit.
   if schedule == 'continuous_train_and_eval':
-    return run_experiment.Runner(base_dir, create_agent_fn, create_environment_fn=environment_builder)
+    return run_experiment.Runner(base_dir, create_agent_fn, create_environment_fn=environment_builder(level_name=level_name))
   # Continuously runs training till maximum num_iterations is hit.
   elif schedule == 'continuous_train':
-    return run_experiment.TrainRunner(base_dir, create_agent_fnb, create_environment_fn=environment_builder)
+    return run_experiment.TrainRunner(base_dir, create_agent_fnb, create_environment_fn=environment_builder(level_name=level_name))
   elif schedule == 'episode_wise':
     return RNDAgent(base_dir, create_agent_fn, create_environment_fn=environment_builder, env_wrapper=MinigridInfoWrapper)
   else:

@@ -13,7 +13,8 @@ class MinigridInfoWrapper(Wrapper):
 
 	def __init__(self, env):
 		super().__init__(env)
-		self._timestep = 0; self.game_over = False; self.step_count = 0; self.T = 0; self.imaginary_ladder_locations = set()
+		self._timestep = 0; self.game_over = False; self.step_count = 0; 
+		self.T = 0; self.imaginary_ladder_locations = set()
 
 		# Store the test-time start state when the environment is constructed
 		self.official_start_obs, self.official_start_info = self.reset()
