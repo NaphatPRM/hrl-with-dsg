@@ -7,7 +7,7 @@ import torch
 import pickle
 import random
 import argparse
-
+from PIL import Image
 from pfrl.wrappers import atari_wrappers
 from hrl.utils import create_log_dir
 from hrl.agent.dsc.dsc import RobustDSC
@@ -36,7 +36,7 @@ def load_goal_state(dir_path, file):
 	return goal.obs
 
 
-def get_exploration_agent(rnd_base_dir, level=None):
+def get_exploration_agent(rnd_base_dir):
 	""" Return the exploration runner from BBE. """ 
 	from dopamine.discrete_domains import run_experiment
 	from hrl.agent.bonus_based_exploration.run_experiment import create_exploration_runner as create_runner
@@ -47,7 +47,7 @@ def get_exploration_agent(rnd_base_dir, level=None):
 	]
 
 	run_experiment.load_gin_configs(_gin_files, [])
-	return create_runner(rnd_base_dir, create_agent, level=None, schedule="episode_wise")
+	return create_runner(rnd_base_dir, create_agent, schedule="episode_wise")
 
 
 if __name__ == "__main__":
@@ -126,7 +126,7 @@ if __name__ == "__main__":
 	
 	_rnd_log_file = os.path.join(_rnd_base_dir, "rnd_log.pkl")
 
-	exploration_agent = get_exploration_agent(_rnd_base_dir, args.environment_name)
+	exploration_agent = get_exploration_agent(_rnd_base_dir)
 
 
 	env = MinigridInfoWrapper(
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 		)
 		)
 		
-	s0, _ = env.reset()
+	s0, info_start = env.reset()
 	p0 = env.agent_pos
 
 	goal_dir_path = "/ifs/CS/replicated/home/npermpre/hrl-with-dsg/hrl/goal_states"
@@ -170,7 +170,7 @@ if __name__ == "__main__":
 
 	pfrl.utils.set_random_seed(args.seed)
 
-	beta0 = SalientEvent(s0, default_pos_to_info(p0), tol=0.)
+	beta0 = SalientEvent(s0, info_start, tol=0.)
 	beta1 = SalientEvent(g0, default_pos_to_info(gpos), tol=2.)
 	beta2 = SalientEvent(g1, default_pos_to_info(gpos1), tol=2.)
 	beta3 = SalientEvent(g2, default_pos_to_info(gpos2), tol=2.)
@@ -184,7 +184,7 @@ if __name__ == "__main__":
 	if args.use_predefined_events:
 		predefined_events = [beta1, beta2, beta3, beta4, beta5, beta6, beta7, beta8]
 
-	assert len(predefined_events) == 0, "No Predefined Event"
+	assert len(predefined_events) == 0, "No Predefined Event"; print(predefined_events)
 
 	dsc_agent = RobustDSC(env,
 						  args.gestation_period,

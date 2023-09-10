@@ -126,7 +126,7 @@ class DSGTrainer:
 				self.graph_expansion_run_loop(episode, self.expansion_duration)
 				episode += self.expansion_duration
 			elif len(self.salient_events) > 0:
-				print(f'Print Salient Event : {self.salient_events}'); self.graph_consolidation_run_loop(episode, duration=consolidation_duration)
+				self.graph_consolidation_run_loop(episode, duration=consolidation_duration)
 				episode += consolidation_duration
 			else:
 				ipdb.set_trace()
@@ -229,7 +229,7 @@ class DSGTrainer:
 				)
 
 			if intrinsic_subgoals or extrinsic_subgoals:
-				new_events = self.convert_discovered_goals_to_salient_events(
+				print("Intrinsic Subgoals", intrinsic_subgoals); print("Extrinsic Subgoals", extrinsic_subgoals); new_events = self.convert_discovered_goals_to_salient_events(
 					extrinsic_subgoals+intrinsic_subgoals
 				)
 		
@@ -937,19 +937,23 @@ class DSGTrainer:
 
 	def convert_discovered_goals_to_salient_events(self, discovered_goals):
 		""" Convert a list of discovered goal states to salient events. """
-		added_events = []
+		added_events = []; hash_events = []
 		for obs, info, reward in discovered_goals:
 			event = SalientEvent(obs, info, tol=0.) # Should be manually put in command line
-			print("Accepted New Salient Event: ", event)
-			added_events.append(event)
+			print("This is event_hash : ", event.__hash__)
+			if event.__hash__ not in hash_events:
+				print("Accepted New Salient Event: ", event); print("Hashing : ", event.__hash__)
+				added_events.append(event); hash_events.append(event.__hash__)
 
-			# Add the discovered event only if we are not in gc experiment mode
-			if len(self.predefined_events) == 0:
-				self.add_salient_event(event)
+				# Add the discovered event only if we are not in gc experiment mode
+				if len(self.predefined_events) == 0:
+					self.add_salient_event(event)
 
 		return added_events
 
 	def add_salient_event(self, new_event):
-		print("[DSGTrainer] Adding new SalientEvent ", new_event)
-		self.salient_events.append(new_event)
-		self.dsg_agent.salient_events.append(new_event)
+		print("Current self.salient_events : ", self.salient_events); print("Is it in there : ", new_event in self.salient_events)
+		if new_event not in self.salient_events:
+			print("[DSGTrainer] Adding new SalientEvent ", new_event); print("[DSGTrainerInfo] Has an info", new_event.target_info)
+			self.salient_events.append(new_event)
+			self.dsg_agent.salient_events.append(new_event)

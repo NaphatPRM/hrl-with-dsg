@@ -103,7 +103,7 @@ def create_exploration_agent(sess, environment, agent_name=None,
 
 
 @gin.configurable
-def create_exploration_runner(base_dir, create_agent_fn, level_name=None,
+def create_exploration_runner(base_dir, create_agent_fn,
                               schedule='continuous_train_and_eval'):
   """Creates an experiment Runner.
 
@@ -120,10 +120,6 @@ def create_exploration_runner(base_dir, create_agent_fn, level_name=None,
     ValueError: When an unknown schedule is encountered.
   """
   assert base_dir is not None
-  if level_name is not None :
-	  def new_environment_builder(level=level_name):
-		  return environment_builder(level)
-	  environment_builder = new_environment_builder
   # Continuously runs training and eval till max num_iterations is hit.
   if schedule == 'continuous_train_and_eval':
     return run_experiment.Runner(base_dir, create_agent_fn, create_environment_fn=environment_builder)

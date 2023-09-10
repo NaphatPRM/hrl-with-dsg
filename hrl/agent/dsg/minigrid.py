@@ -22,7 +22,7 @@ class MinigridInfoWrapper(Wrapper):
 		x = self.env.reset()
 		if type(x) is tuple:
 			obs, info = x
-			info = self._modify_info_dict(info)
+			info = self._modify_info_dict(info) if len(info) == 0  else info
 			return obs, info
 		else:
 			return x, self._modify_info_dict(info={})
@@ -39,7 +39,7 @@ class MinigridInfoWrapper(Wrapper):
 		self.T += 1
 		self.step_count += 1
 		info = self._modify_info_dict(info, terminated, truncated)
-		done = truncated or info["terminated"]
+		done = truncated or info["terminated"];
 		return obs, reward, done, info
 
 	def _modify_info_dict(self, info, terminated=False, truncated=False):
@@ -208,7 +208,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-DoorKey-6x6-v0',
+  level_name='MiniGrid-LavaCrossingS9N3-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,

@@ -62,12 +62,12 @@ class ConvInitiationClassifier(InitiationClassifier):
         return label.cpu().numpy()
 
     def pessimistic_predict(self, state):
-        assert isinstance(state, np.ndarray)
-        assert isinstance(self.pessimistic_classifier, ConvClassifier)
-        assert self.pessimistic_classifier.is_trained
-        features = torch.as_tensor(state).float().to(self.device)
-        label = self.pessimistic_classifier.predict(features, threshold=0.75) == 1
-        return label.cpu().numpy()
+	    assert isinstance(state, np.ndarray), state
+	    assert isinstance(self.pessimistic_classifier, ConvClassifier)
+	    assert self.pessimistic_classifier.is_trained
+	    features = torch.as_tensor(state).float().to(self.device)
+	    label = self.pessimistic_classifier.predict(features, threshold=0.75) == 1
+	    return label.cpu().numpy()
 
     def get_false_positive_rate(self):
         """ Fraction of the negative data that is classified as positive. """ 
