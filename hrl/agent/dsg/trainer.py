@@ -937,23 +937,31 @@ class DSGTrainer:
 
 	def convert_discovered_goals_to_salient_events(self, discovered_goals):
 		""" Convert a list of discovered goal states to salient events. """
-		added_events = []; hash_events = []
+		added_events = []
 		for obs, info, reward in discovered_goals:
 			event = SalientEvent(obs, info, tol=0.) # Should be manually put in command line
-			print("This is event_hash : ", event.__hash__)
-			if event.__hash__ not in hash_events:
-				print("Accepted New Salient Event: ", event); print("Hashing : ", event.__hash__)
-				added_events.append(event); hash_events.append(event.__hash__)
+			print("Accepted New Salient Event: ", event)
+			added_events.append(event)
 
-				# Add the discovered event only if we are not in gc experiment mode
-				if len(self.predefined_events) == 0:
-					self.add_salient_event(event)
+			# Add the discovered event only if we are not in gc experiment mode
+			if len(self.predefined_events) == 0:
+				self.add_salient_event(event)
 
 		return added_events
 
 	def add_salient_event(self, new_event):
-		print("Current self.salient_events : ", self.salient_events); print("Is it in there : ", new_event in self.salient_events)
-		if new_event not in self.salient_events:
-			print("[DSGTrainer] Adding new SalientEvent ", new_event); print("[DSGTrainerInfo] Has an info", new_event.target_info)
-			self.salient_events.append(new_event)
-			self.dsg_agent.salient_events.append(new_event)
+		current_pos = [event.target_pos for event in self.salient_events]
+		new_event_pos = new_event.target_pos
+		print(current_pos)
+		print(new_event_pos)
+		if any(list(map(lambda x: x[0] == new_event_pos[0] and x[1] == new_event_pos[1], current_pos))):
+			print("New Event Info\n")
+			print(new_event.target_info)
+			should_satisfy = [event(new_event.target_info) for event in self.salient_events]
+			print("\nThis is satisfy : ", should_satisfy)
+			if any(should_satisfy):
+				return
+		print("[DSGTrainer] Adding new SalientEvent ", new_event); print("[DSGTrainerInfo] Has an info", new_event.target_info)
+		self.salient_events.append(new_event)
+		self.dsg_agent.salient_events.append(new_event)
+

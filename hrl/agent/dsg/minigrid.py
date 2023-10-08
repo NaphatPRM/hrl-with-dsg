@@ -69,10 +69,10 @@ class MinigridInfoWrapper(Wrapper):
 	def get_current_info(self, info, update_lives=False): return self._modify_info_dict(info)
 	def get_current_position(self): return self.env.agent_pos[0], self.env.agent_pos[1]
 	def check_status(self): 
-		p1 = "go to" in self.env.mission
+		p1 = "go to" in self.env.mission or "open" in self.env.mission
 		list_mission = self.env.mission.split()
-		p2 = self.env.unwrapped.carrying.type == list_mission[4]
-		p3 = self.env.unwrapped.carrying.color == list_mission[3]
+		p2 = self.env.unwrapped.carrying.type == list_mission[4] if len(list_mission) > 3 else True
+		p3 = self.env.unwrapped.carrying.color == list_mission[3] if len(list_mission) > 3 else True
 		return p1 and p2 and p3
 
 
@@ -208,7 +208,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-LavaCrossingS9N3-v0',
+  level_name='MiniGrid-KeyCorridorS3R1-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,

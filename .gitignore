@@ -4,6 +4,7 @@ logs/
 ccv_logs/
 *.out
 *.err
+script_run_mng.command.o*
 
 # VS Code
 .vscode/
