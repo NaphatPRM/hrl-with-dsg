@@ -62,7 +62,7 @@ class SalientEvent:
         if info["room_number"] == 1 and info["inventory"] == "00000000":
             return f"SE({self.target_pos})"
         return f"SE({self.target_info})"
-    
+
     def __repr__(self):
         return str(self)
 

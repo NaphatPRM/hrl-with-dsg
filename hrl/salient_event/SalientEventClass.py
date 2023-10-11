@@ -49,7 +49,6 @@ class SalientEvent(object):
         return _state_eq(self.target_state, other.target_state) and \
                self.tolerance == other.tolerance # and \
                # self.event_idx == other.event_idx
-
     def __hash__(self):
         return hash(self.event_idx)
 

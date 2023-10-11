@@ -126,7 +126,7 @@ class DSGTrainer:
 				self.graph_expansion_run_loop(episode, self.expansion_duration)
 				episode += self.expansion_duration
 			elif len(self.salient_events) > 0:
-				print(f'Print Salient Event : {self.salient_events}'); self.graph_consolidation_run_loop(episode, duration=consolidation_duration)
+				self.graph_consolidation_run_loop(episode, duration=consolidation_duration)
 				episode += consolidation_duration
 			else:
 				ipdb.set_trace()
@@ -229,7 +229,7 @@ class DSGTrainer:
 				)
 
 			if intrinsic_subgoals or extrinsic_subgoals:
-				new_events = self.convert_discovered_goals_to_salient_events(
+				print("Intrinsic Subgoals", intrinsic_subgoals); print("Extrinsic Subgoals", extrinsic_subgoals); new_events = self.convert_discovered_goals_to_salient_events(
 					extrinsic_subgoals+intrinsic_subgoals
 				)
 		
@@ -950,6 +950,18 @@ class DSGTrainer:
 		return added_events
 
 	def add_salient_event(self, new_event):
-		print("[DSGTrainer] Adding new SalientEvent ", new_event)
+		current_pos = [event.target_pos for event in self.salient_events]
+		new_event_pos = new_event.target_pos
+		print(current_pos)
+		print(new_event_pos)
+		if any(list(map(lambda x: x[0] == new_event_pos[0] and x[1] == new_event_pos[1], current_pos))):
+			print("New Event Info\n")
+			print(new_event.target_info)
+			should_satisfy = [event(new_event.target_info) for event in self.salient_events]
+			print("\nThis is satisfy : ", should_satisfy)
+			if any(should_satisfy):
+				return
+		print("[DSGTrainer] Adding new SalientEvent ", new_event); print("[DSGTrainerInfo] Has an info", new_event.target_info)
 		self.salient_events.append(new_event)
 		self.dsg_agent.salient_events.append(new_event)
+
