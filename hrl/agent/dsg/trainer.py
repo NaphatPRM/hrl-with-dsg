@@ -224,6 +224,7 @@ class DSGTrainer:
 			)
 
 			if self.create_sparse_graph:
+				print("Enter CREATE SPARSE")
 				intrinsic_subgoals, intrinsic_trajectory_idx = self.filter_subgoals_based_on_sparsity_cond(
 					intrinsic_subgoals, intrinsic_trajectory_idx
 				)
