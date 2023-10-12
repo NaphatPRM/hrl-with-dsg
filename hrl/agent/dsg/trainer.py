@@ -920,6 +920,19 @@ class DSGTrainer:
 			first_pass_rewards = [triple[1] for triple in first_pass_triples]
 			first_pass_infos = [triple[2] for triple in first_pass_triples]
 
+			# If the position of anything in the first pass info is the same as in position in self.salient_event,
+			for element in first_pass_infos:
+				for event in self.salient_events:
+					if event(element):
+						print("THERE IS THE REPEAT")
+						print(should_reject(event, element))
+						print("THESE ARE LENGTH OF OBS, REWARDS, INFOS")
+						print(len(first_pass_observations))
+						print(len(first_pass_rewards))
+						print(len(first_pass_infos))
+			# the set a breakpoint --> Check whether should_reject function correctly reject the infos
+			# Check the length of the first_pass_obs, firt_pass_rew, infos
+			# Verify the length of zip(observations, rewards, infos)
 			return first_pass_observations, first_pass_rewards, first_pass_infos
 			
 			# if len(first_pass_observations) > 3:

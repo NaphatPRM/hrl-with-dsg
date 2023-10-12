@@ -26,6 +26,7 @@ from hrl.agent.bonus_based_exploration.noisy_networks import noisy_dqn_agent
 from hrl.agent.bonus_based_exploration.noisy_networks import noisy_rainbow_agent
 from dopamine.discrete_domains import run_experiment
 from hrl.agent.dsg.minigrid import MinigridInfoWrapper, environment_builder
+import functools
 import gin
 
 from pfrl.wrappers import atari_wrappers
@@ -125,8 +126,8 @@ def create_exploration_runner(base_dir, create_agent_fn, level_name='MiniGrid-Do
     return run_experiment.Runner(base_dir, create_agent_fn, create_environment_fn=environment_builder(level_name=level_name))
   # Continuously runs training till maximum num_iterations is hit.
   elif schedule == 'continuous_train':
-    return run_experiment.TrainRunner(base_dir, create_agent_fnb, create_environment_fn=environment_builder(level_name=level_name))
+    return run_experiment.TrainRunner(base_dir, create_agent_fn, create_environment_fn=environment_builder(level_name=level_name))
   elif schedule == 'episode_wise':
-    return RNDAgent(base_dir, create_agent_fn, create_environment_fn=environment_builder, env_wrapper=MinigridInfoWrapper)
+    return RNDAgent(base_dir, create_agent_fn, create_environment_fn=functools.partial(environment_builder, level_name=level_name), env_wrapper=MinigridInfoWrapper)
   else:
     raise ValueError('Unknown schedule: {}'.format(schedule))
