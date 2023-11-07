@@ -186,29 +186,14 @@ class ModelFreeOption(object):
         return self.parent.pessimistic_is_init_true(state,  info)
 
     def extract_init_features(self, state, info):
-        placeHolder = None
         if self.use_pos_for_init:
             return np.array([info["player_x"], info["player_y"]])
         
         if isinstance(state, atari_wrappers.LazyFrames):
-            placeHolder = state._frames[-1].squeeze()
-            if placeHolder is not None:
-                return placeHolder
-            else:
-                print("Enter here, Option Error state LazyFrame\n")
-                print("State is \n", state)
-                print("Info is \n", info)
-                return placeHolder
+            return state._frames[-1].squeeze()
 
         if isinstance(state, np.ndarray):
-            placeHolder = state.squeeze()
-            if placeHolder is not None:
-                return placeHolder
-            else:
-                print("Enter here, Option Error state array\n")
-                print("State is \n", state)
-                print("Info is \n", info)
-                return placeHolder
+            return state.squeeze()
     
     def failure_condition(self, info, check_falling=False):
         targets_start_state = self.target_salient_event.target_pos[0] == 77.\

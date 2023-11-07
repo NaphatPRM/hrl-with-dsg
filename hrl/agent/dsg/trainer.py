@@ -224,11 +224,9 @@ class DSGTrainer:
 			)
 
 			if self.create_sparse_graph:
-				print("Enter CREATE SPARSE")
 				intrinsic_subgoals, intrinsic_trajectory_idx = self.filter_subgoals_based_on_sparsity_cond(
 					intrinsic_subgoals, intrinsic_trajectory_idx
 				)
-				extrinsic_subgoals, extrinsic_trajectory_idx = self.filter_subgoals_based_on_sparsity_cond(extrinsic_subgoals, extrinsic_trajectory_idx)
 
 			if intrinsic_subgoals or extrinsic_subgoals:
 				print("Intrinsic Subgoals", intrinsic_subgoals); print("Extrinsic Subgoals", extrinsic_subgoals); new_events = self.convert_discovered_goals_to_salient_events(
@@ -920,18 +918,10 @@ class DSGTrainer:
 			first_pass_observations = [triple[0] for triple in first_pass_triples]
 			first_pass_rewards = [triple[1] for triple in first_pass_triples]
 			first_pass_infos = [triple[2] for triple in first_pass_triples]
+			if len(first_pass_infos) != len(set(first_pass_infos)):
+				print("NOT EQUAL WHYYYYY")
 
 			# If the position of anything in the first pass info is the same as in position in self.salient_event,
-			print("ENTERING THIS")
-			for element in first_pass_infos:
-				for event in self.salient_events:
-					if event(element):
-						print("THERE IS THE REPEAT")
-						print(should_reject(event, element))
-						print("THESE ARE LENGTH OF OBS, REWARDS, INFOS")
-						print(len(first_pass_observations))
-						print(len(first_pass_rewards))
-						print(len(first_pass_infos))
 			# the set a breakpoint --> Check whether should_reject function correctly reject the infos
 			# Check the length of the first_pass_obs, firt_pass_rew, infos
 			# Verify the length of zip(observations, rewards, infos)
