@@ -194,6 +194,10 @@ class ModelFreeOption(object):
 
         if isinstance(state, np.ndarray):
             return state.squeeze()
+    	print("Enter here\n")
+	print(state)
+	print("\n")
+	print(info)
     
     def failure_condition(self, info, check_falling=False):
         targets_start_state = self.target_salient_event.target_pos[0] == 77.\

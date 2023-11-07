@@ -209,7 +209,7 @@ def determine_directory(env):
 	return None
 
 def environment_builder(
-  level_name='MiniGrid-KeyCorridorS3R1-v0',
+  level_name='MiniGrid-LavaCrossingS9N1-v0',
   reward_fn='sparse',
   grayscale=True,
   add_count_based_bonus=True,

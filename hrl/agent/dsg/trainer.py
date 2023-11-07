@@ -228,6 +228,7 @@ class DSGTrainer:
 				intrinsic_subgoals, intrinsic_trajectory_idx = self.filter_subgoals_based_on_sparsity_cond(
 					intrinsic_subgoals, intrinsic_trajectory_idx
 				)
+				extrinsic_subgoals, extrinsic_trajectory_idx = self.filter_subgoals_based_on_sparsity_cond(extrinsic_subgoals, extrinsic_trajectory_idx)
 
 			if intrinsic_subgoals or extrinsic_subgoals:
 				print("Intrinsic Subgoals", intrinsic_subgoals); print("Extrinsic Subgoals", extrinsic_subgoals); new_events = self.convert_discovered_goals_to_salient_events(
@@ -921,6 +922,7 @@ class DSGTrainer:
 			first_pass_infos = [triple[2] for triple in first_pass_triples]
 
 			# If the position of anything in the first pass info is the same as in position in self.salient_event,
+			print("ENTERING THIS")
 			for element in first_pass_infos:
 				for event in self.salient_events:
 					if event(element):
@@ -966,15 +968,13 @@ class DSGTrainer:
 	def add_salient_event(self, new_event):
 		current_pos = [event.target_pos for event in self.salient_events]
 		new_event_pos = new_event.target_pos
-		print(current_pos)
-		print(new_event_pos)
+		# print(current_pos)
+		# print(new_event_pos)
 		if any(list(map(lambda x: x[0] == new_event_pos[0] and x[1] == new_event_pos[1], current_pos))):
 			print("New Event Info\n")
 			print(new_event.target_info)
 			should_satisfy = [event(new_event.target_info) for event in self.salient_events]
 			print("\nThis is satisfy : ", should_satisfy)
-			if any(should_satisfy):
-				return
 		print("[DSGTrainer] Adding new SalientEvent ", new_event); print("[DSGTrainerInfo] Has an info", new_event.target_info)
 		self.salient_events.append(new_event)
 		self.dsg_agent.salient_events.append(new_event)

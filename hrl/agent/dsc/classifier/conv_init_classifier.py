@@ -62,6 +62,8 @@ class ConvInitiationClassifier(InitiationClassifier):
         return label.cpu().numpy()
 
     def pessimistic_predict(self, state):
+	    if not isinstance(state, np.ndarray):
+		    print(state)
 	    assert isinstance(state, np.ndarray), state
 	    assert isinstance(self.pessimistic_classifier, ConvClassifier)
 	    assert self.pessimistic_classifier.is_trained
