@@ -783,6 +783,20 @@ class DSGTrainer:
 		3. Trajectory index corresponding to the highest intrinsic reward
 		4. Trajectory indices corresponding to positive extrinsic rewards
 		"""
+
+		def filter_unique_field(list_of_triple):
+			unique_values = set()
+			result_list = []
+
+			for struct in list_of_triple:
+				value = struct[2]
+
+				if value not in unique_values:
+					unique_values.add(value)
+					result_list.append(struct)
+
+			return result_list
+
 		extrinsic_triples = []
 		best_intrinsic_score = -np.inf
 		best_intrinsic_triple = None
@@ -801,6 +815,7 @@ class DSGTrainer:
 			
 			if len(ext_triples) > 0:
 				extrinsic_triples.extend(ext_triples)
+				extrinsic_triples = filter_unique_field(extrinsic_triples)
 				extrinsic_trajectory_idx.append(i)
 
 		intrinsic_triples = [best_intrinsic_triple] if best_intrinsic_triple else []
