@@ -915,11 +915,10 @@ class DSGTrainer:
 			first_pass_triples = [(obs, reward, info) for obs, reward, info in 
 								zip(observations, rewards, infos) if not should_reject(obs, info)]
 			
+			print(any(list(map(lambda x: should_reject(x[0], x[2]), first_pass_triples))))
 			first_pass_observations = [triple[0] for triple in first_pass_triples]
 			first_pass_rewards = [triple[1] for triple in first_pass_triples]
 			first_pass_infos = [triple[2] for triple in first_pass_triples]
-			if len(first_pass_infos) != len(set(first_pass_infos)):
-				print("NOT EQUAL WHYYYYY")
 
 			# If the position of anything in the first pass info is the same as in position in self.salient_event,
 			# the set a breakpoint --> Check whether should_reject function correctly reject the infos
